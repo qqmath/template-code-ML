@@ -84,7 +84,7 @@ def test_all_templates(subtests, pytestconfig):
             trim_blocks=True,
             lstrip_blocks=True,
         )
-        template = env.get_template(f"code-template.py.jinja")
+        template = env.get_template("code-template.py.jinja")
 
         # Load test inputs from "test-inputs.yml".
         with open(os.path.join(template_dir.path, "test-inputs.yml"), "r") as f:
@@ -117,7 +117,7 @@ def test_all_templates(subtests, pytestconfig):
         # TODO: If somehow possible, use parametrize instead of for loop here.
         for inputs in input_combinations:
             inputs_str = ",".join(f"{k}={v}" for k, v in inputs.items())
-            with subtests.test(msg=template_dir.name + "---" + inputs_str):
+            with subtests.test(msg=f"{template_dir.name}---{inputs_str}"):
                 # print(inputs)
                 code = template.render(header=lambda x: "", notebook=False, **inputs)
                 run_in_tmp_dir(code)
