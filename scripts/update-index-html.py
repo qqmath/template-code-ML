@@ -42,7 +42,7 @@ tag = os.getenv("GOOGLE_ANALYTICS_TAG")
 tracking_code = f"""<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id={tag}"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){{dataLayer.push(arguments);}} gtag('js', new Date()); gtag('config', '{tag}');</script>"""
 
 size_before = os.stat(index_filename).st_size
-replace_in_file(index_filename, "<head>", "<head>" + tracking_code)
+replace_in_file(index_filename, "<head>", f"<head>{tracking_code}")
 size_after = os.stat(index_filename).st_size
 
 print("Inserted tracking code into:", index_filename)
@@ -66,7 +66,7 @@ META_TAGS = """
 """
 
 size_before = os.stat(index_filename).st_size
-replace_in_file(index_filename, "<head>", "<head>" + META_TAGS)
+replace_in_file(index_filename, "<head>", f"<head>{META_TAGS}")
 size_after = os.stat(index_filename).st_size
 
 print("Inserted meta tags into:", index_filename)

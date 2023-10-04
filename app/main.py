@@ -41,8 +41,7 @@ if os.getenv("GITHUB_TOKEN") and os.getenv("REPO_NAME"):
             f"Added notebook {notebook_id}",
             notebook,
         )
-        colab_link = f"http://colab.research.google.com/github/{os.getenv('REPO_NAME')}/blob/main/notebooks/{notebook_id}/generated-notebook.ipynb"
-        return colab_link
+        return f"http://colab.research.google.com/github/{os.getenv('REPO_NAME')}/blob/main/notebooks/{notebook_id}/generated-notebook.ipynb"
 
 
 else:
